@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSensitivityX: 1
   maxSensitivityY: 1
-  maxLookRotation: 60
+  maxLookRotation: 90
   frameCounter: 20
   minimumX: -360
   maximumX: 360

@@ -97,7 +97,6 @@ public class CameraController : MonoBehaviour
         {
             yScale = scale;
         }
-        Debug.Log("Sign Mouse " + Mathf.Round(xScale) + " Y scale " + Mathf.Round(yScale));
         
         //Gets rotational input from the mouse
         rotationY += pos.y * maxSensitivityY * yScale;

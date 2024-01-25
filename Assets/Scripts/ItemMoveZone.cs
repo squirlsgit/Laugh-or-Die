@@ -25,7 +25,7 @@ public class ItemMoveZone : MonoBehaviour
         // fixed height
         // screen space x, y to world space x, z
         Vector2 mousePos = Input.mousePosition;
-        Vector2 mousePosNormalized = new Vector2(mousePos.x / Screen.width, mousePos.y / Screen.height);
+        Vector2 relativeMousePos = new Vector2(mousePos.x / Screen.width, mousePos.y / Screen.height);
 
         // Unity planes have 10x scale
         Vector3 pos = transform.position;
@@ -35,8 +35,8 @@ public class ItemMoveZone : MonoBehaviour
         float frontBound = -scale.z * 10 + pos.z;
         float backBound = scale.z * 10 + pos.z;
         
-        float x = Mathf.Lerp(leftBound, rightBound, mousePosNormalized.x);
-        float z = Mathf.Lerp(frontBound, backBound, mousePosNormalized.y);
+        float x = Mathf.Lerp(leftBound, rightBound, relativeMousePos.x);
+        float z = Mathf.Lerp(frontBound, backBound, relativeMousePos.y);
 
         return new Vector3(x, transform.position.y, z);
     }

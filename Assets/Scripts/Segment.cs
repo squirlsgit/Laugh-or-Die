@@ -34,6 +34,10 @@ public class Segment : MonoBehaviour
     public void Fling()
     {
         // Fling for 3 seconds then destroy
+        if (!parent)
+        {
+            return;
+        }
         parent.children.Remove(this);
         foreach(Segment segment in GetAllSegments())
         {
@@ -41,8 +45,9 @@ public class Segment : MonoBehaviour
         }
 
         rb.isKinematic = false;
-        rb.velocity = new Vector3(0,8,0);
+        rb.velocity = new Vector3(0,2,2);
         Player.instance.Hurt();
+        Mee.instance.FullLaughMeter();
 
         StartCoroutine(SegmentDying());
     }
@@ -76,7 +81,6 @@ public class Segment : MonoBehaviour
     IEnumerator SegmentDying()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         Destroy(gameObject);
     }
 }

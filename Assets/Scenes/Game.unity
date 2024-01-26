@@ -408,18 +408,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307413244}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &329349621 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6900734725062900097, guid: a96669d539d5b1347872aaf5c60fa246,
-    type: 3}
-  m_PrefabInstance: {fileID: 1016073584}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7a07aeff8327734d9c6f49dbe55ccba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &405175926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1004,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ME_Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0bc289d02d133cb4782a6b7881679a62,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fd53ffa600e7f9e44991f8375ba210f8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2007,14 +2000,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b0f0f5a10819243a6d322dcec0ab89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeWeapon: {fileID: 0}
+  activeHand: {fileID: 0}
   debugText: {fileID: 1283124321}
-  leftHand: {fileID: 329349621}
-  rightHand: {fileID: 6148667264719580350}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  gaps: []
   maxBloodAmount: 500
   bloodAmount: 0
   painAmount: 0
   bloodBar: {fileID: 134227590}
   painBar: {fileID: 1852069816}
+  stabPromptingInterval: 0
+  surviveTimeText: {fileID: 0}
+  scoreText: {fileID: 0}
+  surviveTime: 0
+  score: 0
 --- !u!4 &1721824032
 Transform:
   m_ObjectHideFlags: 0
@@ -2679,21 +2680,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536cbf066cd7e4f4dbee8256aa7d3eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectPreviewLayer:
+  segmentLayer:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &6148667264719580350 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5408939937493498585, guid: 2f9a0212b4ae1894db7fd589b45e471b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6948583861954933336}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7a07aeff8327734d9c6f49dbe55ccba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  gapLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isSelected: 0
+  isDoingWork: 0
 --- !u!1001 &6948583861954933336
 PrefabInstance:
   m_ObjectHideFlags: 0

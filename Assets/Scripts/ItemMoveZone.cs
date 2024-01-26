@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ItemMoveZone : MonoBehaviour
 {
@@ -20,24 +21,34 @@ public class ItemMoveZone : MonoBehaviour
         } 
     }
 
-    public Vector3 MouseToZonePos()
+
+    public Vector3 MouseToZonePos(Vector3 offset)
     {
         // fixed height
         // screen space x, y to world space x, z
-        Vector2 mousePos = Input.mousePosition;
+        Vector2 mousePos = Mouse.current.position.value;
+        
         Vector2 relativeMousePos = new Vector2(mousePos.x / Screen.width, mousePos.y / Screen.height);
 
-        // Unity planes have 10x scale
-        Vector3 pos = transform.position;
-        Vector3 scale = transform.localScale;
-        float leftBound = -scale.x * 10 + pos.x;
-        float rightBound = scale.x * 10 + pos.x;
-        float frontBound = -scale.z * 10 + pos.z;
-        float backBound = scale.z * 10 + pos.z;
-        
-        float x = Mathf.Lerp(leftBound, rightBound, relativeMousePos.x);
-        float z = Mathf.Lerp(frontBound, backBound, relativeMousePos.y);
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
 
-        return new Vector3(x, transform.position.y, z);
+        // actual Ray
+
+        
+        // debug Ray
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+        Debug.DrawRay(ray.origin, ray.direction * Player.instance.reach, Color.red);
+        RaycastHit hit;
+        Vector3 pos = Vector3.zero;
+        if (Physics.Raycast(ray, out hit, Player.instance.reach))
+        {
+            pos = hit.point;
+        }
+        else
+        {
+            pos = ray.origin + ray.direction * Player.instance.reach;
+        }
+
+        return pos + offset;
     }
 }

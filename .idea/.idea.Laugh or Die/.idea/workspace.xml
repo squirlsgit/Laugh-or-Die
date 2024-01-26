@@ -2,23 +2,104 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd220cf9-c684-43a6-8219-3016d97f406f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_gray.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_gray.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_red.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_bluePink.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_bluePink.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_green.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Highlight.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Highlight.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Knife.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Knife.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Move Area.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Move Area.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Input/Highlight.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Input/Highlight.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Laugh or Die/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Laugh or Die/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CameraController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations/DMC_IdleAnimation.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations/DMC_IdleAnimation.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations/DMC_Man_AnimationController.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations/DMC_Man_AnimationController.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations/DMC_Man_TPose.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Animations/DMC_Man_TPose.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Cube.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Cube/CubeAnimation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Cube/CubeAnimation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Cube/CubeController.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Cube/CubeController.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/Gradient_BluePink.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/Gradient_BluePink.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_gray.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_gray.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_red.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/standard_red.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_bluePink.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_bluePink.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_green.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Content/Materials/unlit_green.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Dynamic Mesh Cutter Manual.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Dynamic Mesh Cutter Manual.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene/ExampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene/ExampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene/LightingData.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene/LightingData.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene/ReflectionProbe-0.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/ExampleScene/ReflectionProbe-0.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/AsycWorker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/AsycWorker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/DynamicMesh.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/DynamicMesh.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshCreation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshCreation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshCutting.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshCutting.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshSeperation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshSeperation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/VirtualMesh.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/VirtualMesh.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/VirtualPlane.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/VirtualPlane.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/DynamicRagdoll.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/DynamicRagdoll.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/DynamicRagdollPart.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/DynamicRagdollPart.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/Editor/DynamicRagdollInspector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/Editor/DynamicRagdollInspector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/GroupBehaviours.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Ragdoll/GroupBehaviours.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/CutterBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/CutterBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/Editor/MeshTargetInspector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/Editor/MeshTargetInspector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/Editor/PlaneBehaviourInspector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/Editor/PlaneBehaviourInspector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/MeshTarget.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/MeshTarget.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/MeshTargetShephard.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/MeshTargetShephard.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/MouseBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/MouseBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/PlaneBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/PlaneBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/ReloadDemo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/ReloadDemo.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/readme.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Laugh or Die.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Laugh or Die.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Skin.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Skin.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Table.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Table.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Dismemberment.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Dismemberment.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mee Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mee Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemMoveZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemMoveZone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapon.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +108,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/30adf90198bc4c4b83910c6fb1877998174000/00/f3d02b8b/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -43,6 +124,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.4965909",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -99,7 +181,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706062892444</updated>
-      <workItem from="1706062898777" duration="6848000" />
+      <workItem from="1706062898777" duration="33656000" />
     </task>
     <servers />
   </component>

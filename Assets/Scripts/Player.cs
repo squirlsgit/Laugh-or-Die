@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -41,7 +42,9 @@ public class Player : MonoBehaviour
 
     public float surviveTime;
     public float score;
-    
+
+    public float reach = 2f;
+    public LayerMask touchable = LayerMask.GetMask("Knife");
     private void Awake() 
     {         
         if (instance != null && instance != this) 
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
         HandleMouseEvents();
         if (activeWeapon)
         {
-            activeWeapon.OnMove();
+            activeWeapon.Move();
         }
     }
 
@@ -104,35 +107,43 @@ public class Player : MonoBehaviour
 
     public void HandleMouseEvents()
     {
-        bool leftClicked = Input.GetMouseButtonDown(0);
-        bool rightClicked = Input.GetMouseButtonDown(1);
+        bool leftClicked = Mouse.current.leftButton.wasPressedThisFrame;
+        bool rightClicked = Mouse.current.rightButton.wasPressedThisFrame;
         
-        bool leftUp = Input.GetMouseButtonUp(0);
-        bool rightUp = Input.GetMouseButtonUp(1);
         
         if (leftClicked || rightClicked)
         {
-            // if (rightClicked && activeWeapon)
-            // {
-            //     activeWeapon.OnAction();
-            // }
             
             if (leftClicked && activeWeapon)
             {
-                activeWeapon.OnAction();
+                activeWeapon.Action();
+                return;
+            }
+
+            if (activeWeapon)
+            {
                 return;
             }
             
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            
+            
+            Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
+
+            // actual Ray
+            
+            // debug Ray
+            Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+            Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Player.instance.reach, touchable))
             {
                 Weapon weapon = hit.collider.GetComponent<Weapon>();
-                if (weapon != null)
+                if (weapon)
                 {
                     activeHand = leftClicked ? leftHand : rightHand;
                     activeWeapon = weapon;
-                    weapon.OnGrab();
+                    weapon.Grab();
                     activeHand.Grab();
                 }
             }

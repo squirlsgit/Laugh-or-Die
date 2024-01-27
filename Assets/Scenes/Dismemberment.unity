@@ -2360,7 +2360,7 @@ MonoBehaviour:
   scoreText: {fileID: 505317995}
   surviveTime: 0
   score: 0
-  reach: 6
+  reach: 8
   touchable:
     serializedVersion: 2
     m_Bits: 503

@@ -11,7 +11,7 @@ namespace SFX
         [ShowInInspector]
         public Dictionary<string, AudioClip> clips = new();
         [Button]
-        public void Play(string ev, AudioSource source, Vector3? position = null)
+        public void TryPlay(string ev, AudioSource source, Vector3? position = null)
         {
             if (clips.ContainsKey(ev) && clips[ev] != null)
             {

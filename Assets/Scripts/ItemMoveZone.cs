@@ -21,7 +21,13 @@ public class ItemMoveZone : MonoBehaviour
         } 
     }
 
+    /// <summary>
+    /// Keeps held items safely within reach.
+    /// </summary>
+    /// <returns></returns>
+    public float reachBuffer = 2f;
 
+    public float reach => Player.instance.reach - reachBuffer;
     public Vector3 MouseToZonePos(Vector3 offset)
     {
         // fixed height
@@ -37,16 +43,16 @@ public class ItemMoveZone : MonoBehaviour
         
         // debug Ray
         Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
-        Debug.DrawRay(ray.origin, ray.direction * Player.instance.reach, Color.red);
+        Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
         RaycastHit hit;
         Vector3 pos = Vector3.zero;
-        if (Physics.Raycast(ray, out hit, Player.instance.reach))
+        if (Physics.Raycast(ray, out hit, reach))
         {
             pos = hit.point;
         }
         else
         {
-            pos = ray.origin + ray.direction * Player.instance.reach;
+            pos = ray.origin + ray.direction * reach;
         }
 
         return pos + offset;

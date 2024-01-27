@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     // TODO: Bryan code clean up items (Nick please add more that Bryan needs to clean up):
     // TODO: move all ui references to another script
 
-    public Weapon activeWeapon;
+    public IWeapon activeWeapon;
     public Hand activeHand;
         
     public TMP_Text debugText;
@@ -73,10 +73,12 @@ public class Player : MonoBehaviour
         surviveTime = Time.time;
         surviveTimeText.text = "survived: " + surviveTime.ToString("#.##");
 
-        HandleMouseEvents();
-        if (activeWeapon)
+        MouseMoveItem();
+        
+        // Don't know how to use the inspector settings so have to do it here :(
+        if (Mouse.current.rightButton.wasReleasedThisFrame || Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            activeWeapon.Move();
+            DropActiveItem();
         }
     }
 
@@ -105,48 +107,85 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void HandleMouseEvents()
+    public void LeftHandPickupItem(InputAction.CallbackContext context)
     {
-        bool leftClicked = Mouse.current.leftButton.wasPressedThisFrame;
-        bool rightClicked = Mouse.current.rightButton.wasPressedThisFrame;
-        
-        
-        if (leftClicked || rightClicked)
+        if (context.canceled)
         {
-            
-            if (leftClicked && activeWeapon)
+            return;
+        }
+        if (activeWeapon != null)
+        {
+            return;
+        }
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); 
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+        Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, reach, touchable))
+        {
+            Weapon weapon = hit.collider.GetComponent<Weapon>();
+            if (weapon != null)
             {
-                activeWeapon.Action();
-                return;
+                activeHand = leftHand;
+                activeWeapon = weapon;
+                weapon.Grab();
+                activeHand.Grab();
             }
+        }
+    }
+    
+    public void RightHandPickupItem(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            return;
+        }
+        if (activeWeapon != null)
+        {
+            return;
+        }
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); 
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+        Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, reach, touchable))
+        {
+            Weapon weapon = hit.collider.GetComponent<Weapon>();
+            if (weapon != null)
+            {
+                activeHand = rightHand;
+                activeWeapon = weapon;
+                weapon.Grab();
+                activeHand.Grab();
+            }
+        }
+    }
 
-            if (activeWeapon)
-            {
-                return;
-            }
-            
-            
-            
-            
-            Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
+    public void MouseMoveItem()
+    {
+        if (activeWeapon != null)
+        {
+            activeWeapon.Move();
+        }
+    }
 
-            // actual Ray
-            
-            // debug Ray
-            Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
-            Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Player.instance.reach, touchable))
-            {
-                Weapon weapon = hit.collider.GetComponent<Weapon>();
-                if (weapon)
-                {
-                    activeHand = leftClicked ? leftHand : rightHand;
-                    activeWeapon = weapon;
-                    weapon.Grab();
-                    activeHand.Grab();
-                }
-            }
+    public void DropActiveItem()
+    {
+        if (activeWeapon != null)
+        {
+            activeWeapon.Drop();
+        }
+    }
+
+    public void ActionWithActiveWeapon(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            return;
+        }
+        if (activeWeapon != null)
+        {
+            activeWeapon.Action();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Mee : MonoBehaviour
+public class Mee : MonoBehaviour, IDamageDetailed
 {
     public static Mee instance;
     public Image laughMeter;
@@ -42,5 +42,16 @@ public class Mee : MonoBehaviour
     public void FullLaughMeter()
     {
         laughMeter.fillAmount = 1;
+    }
+
+    public void Damage(MonoBehaviour cause, RaycastHit hit)
+    {
+        Debug.Log("MEE GOT SHOT");
+        Destroy(gameObject);
+    }
+
+    public void Damage(MonoBehaviour cause, Vector3 position, Vector3 surfaceNormal, Collider collider)
+    {
+        Debug.Log("MEE GOT SHOT, BUT COMPLICATED");
     }
 }

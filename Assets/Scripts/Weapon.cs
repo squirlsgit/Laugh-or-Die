@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
 
     public bool isSelected;
     public bool isDoingWork;
+
+    public Vector3 holdOffset = Vector3.up;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,29 +33,31 @@ public class Weapon : MonoBehaviour
         GapDetection();
     }
 
-    public virtual void OnDrag()
+    public virtual void Drag()
     {
-        transform.position = ItemMoveZone.instance.MouseToZonePos();
+        transform.position = ItemMoveZone.instance.MouseToZonePos(holdOffset);
     }
     
-    public virtual void OnMove()
+    public virtual void Move()
     {
-        transform.position = ItemMoveZone.instance.MouseToZonePos();
+        transform.position = ItemMoveZone.instance.MouseToZonePos(holdOffset);
     }
 
-    public void OnGrab()
+    public void Grab()
     {
         _isDragging = true;
         rb.isKinematic = true;
+        gameObject.SetChildLayers(LayerMask.NameToLayer("Ignore Raycast"));
         Straighten();
     }
     
-    public void OnAction() 
+    public void Action() 
     {
+        gameObject.SetChildLayers(LayerMask.NameToLayer("Knife"));
         _isDragging = false;
         rb.isKinematic = false;
         rb.velocity = new Vector3(0,-20,0);
-        if (_targetedSegment != null)
+        if (_targetedSegment)
         {
             _targetedSegment.Fling();
         }

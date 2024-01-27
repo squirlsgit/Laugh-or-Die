@@ -12,5 +12,15 @@ namespace SFX
         {
             instance = this;
         }
+
+        public void InvokeEvent(string ev, Vector3 position)
+        {
+            OnEvent.Invoke(ev, position);
+        }
+
+        public void InvokeEvent(string ev)
+        {
+            OnEvent.Invoke(ev, null);
+        }
     }
 }

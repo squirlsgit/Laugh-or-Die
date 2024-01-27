@@ -2341,8 +2341,10 @@ MonoBehaviour:
   items:
     m_Keys:
     - chopFlesh
+    - massiveChopFlesh
     m_Values:
     - {fileID: 1000010076364042, guid: 6b1c1aff91f72f34c9a1d7f92f59d324, type: 3}
+    - {fileID: 128936, guid: 8ddb901273d80e447bedd4f68c845234, type: 3}
 --- !u!82 &7426194235562373764
 AudioSource:
   m_ObjectHideFlags: 0

@@ -57,11 +57,16 @@ public class Segment : MonoBehaviour
         var forward = transform.position - bloodPos;
         
         rb.velocity = (forward + flingAdjust).normalized * flingScale;
-        
+        var ev = "chopFlesh";
+        if (!parent.parent)
+        {
+            ev = "massiveChopFlesh";
+            bloodPos += new Vector3(0, -0.01241f, -0.0077f - 0.01f);
+        }
         Player.instance.Hurt();
         Mee.instance.FullLaughMeter();
         SourcePlayerEvents.instance.InvokeEvent(
-            "chopFlesh",
+            ev,
             bloodPos,
             rb.velocity.normalized,
             transform.parent.gameObject

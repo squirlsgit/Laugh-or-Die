@@ -33,12 +33,14 @@ public class Hand : MonoBehaviour
     public void Grab()
     {
         mode = "grabbing";
+        gameObject.SetActive(false);
         transform.position = Player.instance.activeWeapon.transform.position;
     }
 
     public void Free()
     {
         mode = "idle";
+        gameObject.SetActive(true);
         Reset();
     }
 

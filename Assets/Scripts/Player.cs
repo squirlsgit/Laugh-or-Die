@@ -109,8 +109,6 @@ public class Player : MonoBehaviour
     {
         bool leftClicked = Mouse.current.leftButton.wasPressedThisFrame;
         bool rightClicked = Mouse.current.rightButton.wasPressedThisFrame;
-        
-        
         if (leftClicked || rightClicked)
         {
             

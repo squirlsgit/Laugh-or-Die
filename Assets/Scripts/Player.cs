@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     public float score;
 
     public float reach = 2f;
-    public LayerMask touchable = LayerMask.GetMask("Knife");
+    public LayerMask touchable;
     private void Awake() 
     {         
         if (instance != null && instance != this) 

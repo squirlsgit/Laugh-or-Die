@@ -71,11 +71,20 @@ public class Player : MonoBehaviour
         bloodAmount = maxBloodAmount;
         debugText.text = "Joint left: " + SegmentCount;
         currentGapPattern = StabbingGame.instance.Level1PatternFactory();
-
+        if (m_Volume)
+        {
+            
+            m_Volume.sharedProfile.TryGet<Vignette>(out v);
+        }
         StartCoroutine(ConstantlyShowRandomGapToStab());
     }
 
     public float injuredBloodThreshold = 100f;
+    [SerializeField]
+    float vignetteAnimDur = 0.5f;
+    Vignette v = null;
+    [SerializeField]
+    private float maxVignetteIntensity = 0.2f;
     public bool IsInjured => bloodBar.fillAmount < injuredBloodThreshold;
     private void Update()
     {
@@ -89,6 +98,11 @@ public class Player : MonoBehaviour
         // {
         //     StartCoroutine(ApplyInjuredVignette());
         // }
+
+        if (v)
+        {
+            v.intensity.value = 1 - Math.Clamp((maxBloodAmount - bloodAmount / maxBloodAmount), 0f, 1f);
+        }
         bloodBar.fillAmount = bloodAmount / maxBloodAmount;
         
         surviveTime = Time.time;
@@ -104,16 +118,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    float vignetteAnimDur = 0.5f;
-    [SerializeField]
-    private float maxVignetteIntensity = 0.2f;
     IEnumerator ApplyInjuredVignette()
     {
         var t = 0f;
-        Vignette v = null;
         PaniniProjection p = null;
-        if (m_Volume && m_Volume.sharedProfile.TryGet<Vignette>(out v))
+        if (m_Volume && )
         {
             while (t < vignetteAnimDur)
             {

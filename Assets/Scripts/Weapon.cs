@@ -8,7 +8,7 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 {
     // do we actually need draggable class?
     private bool _isDragging;
-    
+
     public Rigidbody rb
     {
         get => GetComponent<Rigidbody>();
@@ -59,7 +59,6 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         rb.isKinematic = false;
         Player.instance.activeHand.Free();
         Player.instance.activeWeapon = null;
-        rb.velocity = new Vector3(0,-5,0);
     }
 
     public virtual void Grab()

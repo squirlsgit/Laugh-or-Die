@@ -5,21 +5,10 @@ using UnityEngine;
 public class Gap : MonoBehaviour
 {
     public Transform indicatorArrow;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         OscillateArrow();
-    }
-
-    void Highlight()
-    {
-        
     }
 
     public void Hit()
@@ -27,6 +16,8 @@ public class Gap : MonoBehaviour
         Mee.instance.IncreaseLaughMeter(0.05f);
         Deactivate();
         Player.instance.score += 1;
+        StabbingGame.instance.level = Player.instance.ScoreToLevel(Player.instance.score);
+        Debug.Log(StabbingGame.instance.level);
         Player.instance.scoreText.text = "score: " + Player.instance.score;
     }
 

@@ -10,9 +10,11 @@ public class Segment : MonoBehaviour
     public Segment parent;
     public List<Segment> children;
     private Rigidbody rb => GetComponent<Rigidbody>();
+    private Color _defaultSkinColor;
 
     void Start()
     {
+        _defaultSkinColor = GetComponent<Renderer>().material.color;
     }
 
     public List<Segment> GetAllSegments()
@@ -86,7 +88,7 @@ public class Segment : MonoBehaviour
     {
         foreach(Segment segment in GetAllSegments())
         {
-            segment.GetComponent<Renderer>().material.color = new Color(255, 216, 186);
+            segment.GetComponent<Renderer>().material.color = _defaultSkinColor;
         }
     }
     

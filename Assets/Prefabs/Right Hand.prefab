@@ -971,6 +971,7 @@ GameObject:
   - component: {fileID: 5141701276485779957}
   - component: {fileID: 8708744695184163586}
   - component: {fileID: 6683279061824430254}
+  - component: {fileID: 6510825143126088526}
   m_Layer: 7
   m_Name: Palm
   m_TagString: Untagged
@@ -1066,7 +1067,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1117,6 +1118,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!65 &6510825143126088526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4536979228516951259}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.022521064, y: 0.008, z: 0.009948167}
+  m_Center: {x: -0.002933505, y: -0.009, z: 0.00016047095}
 --- !u!1 &4737599163346001765
 GameObject:
   m_ObjectHideFlags: 0

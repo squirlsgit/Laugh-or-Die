@@ -6,6 +6,7 @@ public class Revolver : Weapon
 {
     public LayerMask shootableLayer;
     public Transform bulletShootingPoint;
+    
     public override void Action()
     {
         RaycastHit hit;
@@ -24,6 +25,12 @@ public class Revolver : Weapon
     public void Reload()
     {
         Debug.Log("Reload gun");
+    }
+
+    public IEnumerator WaitUntilGunShowsUp()
+    {
+        yield return new WaitForSeconds(6);
+        transform.gameObject.SetActive(true);
     }
 
     public override void Move()

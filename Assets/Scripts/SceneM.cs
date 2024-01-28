@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneM : MonoBehaviour
 {
@@ -45,6 +46,18 @@ public class SceneM : MonoBehaviour
         // gameWinScreen.SetActive(false);
         // gameOverScreen.SetActive(false);
         // gameContainer.SetActive(true);
+    }
+    
+    public IEnumerator WaitSecondsUntilLoadWin()
+    {
+        yield return new WaitForSeconds(4);
+        SceneM.instance.WinGame();
+    }
+    
+    public IEnumerator WaitSecondsUntilLoadLose()
+    {
+        yield return new WaitForSeconds(4);
+        SceneM.instance.GameOver();
     }
 
     public void Restart()

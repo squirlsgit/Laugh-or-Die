@@ -15,6 +15,7 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
+    public Animator anim;
     [SerializeField]
     private Volume m_Volume;
     VolumeProfile profile => m_Volume.sharedProfile;
@@ -66,8 +67,10 @@ public class Player : MonoBehaviour
         } 
     }
     
+    
     private void Start()
     {
+        anim.Play("Grab Knife");
         bloodAmount = maxBloodAmount;
         debugText.text = "Joint left: " + SegmentCount;
         currentGapPattern = StabbingGame.instance.Level1PatternFactory();
@@ -234,5 +237,7 @@ public class Player : MonoBehaviour
             revolver.Reload();
         }
     }
+    
+    
 
 }

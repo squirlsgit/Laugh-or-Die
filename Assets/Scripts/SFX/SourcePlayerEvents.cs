@@ -8,12 +8,22 @@ namespace SFX
     {
         /// <summary>
         ///
-        /// arg0 == "stabWall" || arg0 == "shootWall"
+        /// Player or general
+        /// shootWall
+        /// shootTable
+        /// shootPropane
         /// chopFlesh
         /// massiveChopFlesh
+        /// bleedOut
+        /// handOverFire **
+        /// bloodDripping
+        /// bunsenBurner -- in scene tied to fire on or off.
+        /// knifeHitTable
+        /// knifePickUp
         ///
         ///
-        /// bleedOutLaugh
+        /// Mee
+        /// bleedOut
         /// bored
         /// bravoEncore
         /// deathScream

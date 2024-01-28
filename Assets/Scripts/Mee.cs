@@ -10,25 +10,58 @@ using UnityEngine.UI;
 /// trigger animations
 /// - kill
 /// - die
+/// - gift
+/// - laugh
 /// stateful animations
 /// - mood
 /// -- happy = 0
 /// -- sad = 1
+/// 
+/// - standing
+/// -- true
+/// -- false
 /// </summary>
 public class Mee : MonoBehaviour, IDamageDetailed
 {
-    public GameObject gameOverScreen;
-    
+    public Transform playerHead;
     public static Mee instance;
     public Image laughMeter;
     public float rateOfLaughterDecrease;
     public float accelerationOfLaughterDecrease;
     public float laughThreshold = 0.7f;
     public float happyThreshold = 0.4f;
+    public float excitedThreshold = 0.85f;
+    public float giftTimeThreshold = 60f;
+    private List<Transform> positionsAfterGun = new();
     public enum MeeState
     {
         Happy,
         Sad,
+        Excited,
+        Gift,
+    }
+
+    public bool Standing
+    {
+        get
+        {
+            return _animator.GetBool("standing");
+        }
+        set
+        {
+            _animator.SetBool("standing", value);
+        }
+    }
+    public bool Interested
+    {
+        get
+        {
+            return _animator.GetBool("standing");
+        }
+        set
+        {
+            _animator.SetBool("standing", value);
+        }
     }
 
     public MeeState State
@@ -40,6 +73,25 @@ public class Mee : MonoBehaviour, IDamageDetailed
         set
         {
             _animator.SetInteger("mood", (int)value);
+            if (value == MeeState.Sad)
+            {
+                SourcePlayerEvents.instance.InvokeEvent("bored");
+            }
+
+            if (value == MeeState.Happy)
+            {
+                SourcePlayerEvents.instance.InvokeEvent("bravoEncore");
+            }
+            
+            if (value == MeeState.Excited)
+            {
+                SourcePlayerEvents.instance.InvokeEvent("bravoEncore");
+            }
+            if (value == MeeState.Gift)
+            {
+                SourcePlayerEvents.instance.InvokeEvent("intro");
+                _animator.SetTrigger("gift");
+            }
         }
     }
     
@@ -61,18 +113,47 @@ public class Mee : MonoBehaviour, IDamageDetailed
         { 
             instance = this; 
         }
-        SourcePlayerEvents.instance.OnEvent.AddListener(OnStrikeWall);
+
+        SourcePlayerEvents.instance.OnEvent.AddListener(OnStrikeProp);
     }
 
-    private void OnStrikeWall(string arg0, Vector3? arg1, Vector3? arg2, GameObject arg3)
+    private void OnStrikeProp(string arg0, Vector3? arg1, Vector3? arg2, GameObject arg3)
     {
-        if (arg0 == "stabWall" || arg0 == "shootWall")
+        if (arg0 == "shootWall" || arg0 == "shootTable")
         {
             laughMeter.fillAmount = Mathf.Clamp(laughMeter.fillAmount - displeasureFromBadBehavior, 0, 1);
         }
 
+        if (arg0 == "shootPropane")
+        {
+            laughMeter.fillAmount = Mathf.Clamp(laughMeter.fillAmount - displeasureFromBadBehavior * 0.3f, 0, 1);
+        }
     }
 
+    /// <summary>
+    ///
+    /// called at beginning of intro to be synced. then animation controller goes into idle
+    /// </summary>
+    public void PlayIntro()
+    {
+        SourcePlayerEvents.instance.InvokeEvent("intro");
+    }
+    public void GiftGun()
+    {
+        State = MeeState.Gift;
+    }
+
+    /// <summary>
+    ///
+    /// Called after gifting gun through animation trigger
+    /// </summary>
+    public void MoveToOtherSpot()
+    {
+        SceneM.instance.BlindPlayer();
+        Standing = true;
+        transform.position = positionsAfterGun.Random().position;
+        transform.LookAt(Player.instance.transform);
+    }
 
     void Update()
     {
@@ -86,6 +167,9 @@ public class Mee : MonoBehaviour, IDamageDetailed
         if (laughMeter.fillAmount < 0.01f && Time.time - startTime > timeThreshold)
         {
             KillPlayer();
+        } else if (Time.time - startTime > giftTimeThreshold && laughMeter.fillAmount > 0.5f)
+        {
+            GiftGun();
         }
     }
 
@@ -102,6 +186,11 @@ public class Mee : MonoBehaviour, IDamageDetailed
         {
             State = MeeState.Happy;
         }
+
+        if (State != MeeState.Excited && laughMeter.fillAmount > excitedThreshold)
+        {
+            State = MeeState.Excited;
+        }
         if (laughMeter.fillAmount >= laughThreshold)
         {
             _animator.SetTrigger("laugh");
@@ -116,21 +205,29 @@ public class Mee : MonoBehaviour, IDamageDetailed
     public void Damage(MonoBehaviour cause)
     {
         Debug.Log("MEE WAS STABBED IN THE HEAD!!!!");
-        _animator.SetTrigger("die");
+        Die();
     }
 
     public void Damage(MonoBehaviour cause, RaycastHit hit)
     {
         Debug.Log("MEE GOT SHOT");
-        _animator.SetTrigger("die");
+        Die();
     }
 
     public void Damage(MonoBehaviour cause, Vector3 position, Vector3 surfaceNormal, Collider collider)
     {
         Debug.Log("MEE GOT SHOT, BUT COMPLICATED");
-        _animator.SetTrigger("die");
+        Die();
     }
 
+    /// <summary>
+    ///  Triggers death animation, which calls Dead through animation, and dead() wins the game.
+    /// </summary>
+    public void Die()
+    {
+        _animator.SetTrigger("die");
+        SourcePlayerEvents.instance.InvokeEvent("deathScream");
+    }
     public void Dead()
     {
         SceneM.instance.WinGame();

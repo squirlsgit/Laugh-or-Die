@@ -36,6 +36,7 @@ public class SceneM : MonoBehaviour
         gameWinScreen.SetActive(true);
     }
 
+    public float introVoiceLineDelay = 3f;
     public void StartGame()
     {
         mainMenuScreen.SetActive(false);
@@ -47,5 +48,10 @@ public class SceneM : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BlindPlayer()
+    {
+        
     }
 }

@@ -23,16 +23,18 @@ MonoBehaviour:
     SerializationNodes: []
   clips:
     m_Keys:
-    - bloodDripping
-    - bunsenFlame
-    - emptyRevolver
-    - knifeStrikeTable
-    - knifePickUp
-    - chopFlesh
+    - bored
+    - intro
+    - deathScream
+    - bleedOut
+    - moreMoreMORE
+    - bravoEncore
+    - killPlayer
     m_Values:
-    - {fileID: 8300000, guid: b611cfaae96494d71ab9b5eff20a3d96, type: 3}
-    - {fileID: 8300000, guid: 0ce1bf96d6a1b468a9711702eec9d054, type: 3}
-    - {fileID: 8300000, guid: a8f021a9b5b714247b7587ed769baa00, type: 3}
-    - {fileID: 8300000, guid: ed802547f52ea407e814799dcf58061e, type: 3}
-    - {fileID: 8300000, guid: e2225ff1ce9d74330b37b960c4614b0b, type: 3}
-    - {fileID: 8300000, guid: 7ee5ae63219f54da58f59c008873c5c9, type: 3}
+    - {fileID: 8300000, guid: 88576cb1f6a04cf4598c90e8544e9a90, type: 3}
+    - {fileID: 8300000, guid: 5e5960ae9ac16ba45b9bd4e43623cc9c, type: 3}
+    - {fileID: 8300000, guid: b03b4ce1c01a93b4687ac1eab27fefcc, type: 3}
+    - {fileID: 8300000, guid: d51c458222d9f8640af1141df57cda5a, type: 3}
+    - {fileID: 8300000, guid: 3552432edba14f848ac3c1e232971833, type: 3}
+    - {fileID: 8300000, guid: d6f865afa606dcb4d9ec31425123af7d, type: 3}
+    - {fileID: 8300000, guid: 697e318ad34d18c44b3f7ce7bcbdbea3, type: 3}

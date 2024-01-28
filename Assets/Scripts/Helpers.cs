@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class Helpers
@@ -11,4 +12,12 @@ public static class Helpers
             SetChildLayers(child.gameObject, layer);
         }
     }   
+    public static T Random<T>(this List<T> l)
+    {
+        if (l.Count == 0)
+        {
+            return default(T);
+        }
+        return l[Mathf.RoundToInt(UnityEngine.Random.value * (l.Count - 1))];
+    }
 }

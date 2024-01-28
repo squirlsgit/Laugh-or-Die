@@ -10,7 +10,7 @@ public class Revolver : Weapon
     {
         RaycastHit hit;
         Debug.DrawRay(transform.position, bulletShootingPoint.TransformDirection(Vector3.up) * 100, Color.yellow);
-        if (Physics.Raycast(transform.position, bulletShootingPoint.TransformDirection(Vector3.up), out hit, Mathf.Infinity, shootableLayer))
+        if (Physics.Raycast(transform.position, bulletShootingPoint.TransformDirection(Vector3.up), out hit, Mathf.Infinity, shootableLayer, QueryTriggerInteraction.Collide))
         {
             IDamageDetailed damagable = hit.transform.GetComponentInParent<IDamageDetailed>();
             if (damagable != null)

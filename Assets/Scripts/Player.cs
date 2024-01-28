@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
     // TODO: Bryan code clean up items (Nick please add more that Bryan needs to clean up):
     // TODO: move all ui references to another script
 
-    public Weapon activeWeapon;
+    public int maxSegmentCount = 32;
+
+    public IWeapon activeWeapon;
     public Hand activeHand;
         
     public TMP_Text debugText;
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
     public float bloodAmount;
     public float painAmount;
     // TODO: don't hardcode initial limb count
-    public float bloodLossRate => 32 - SegmentCount;
+    public float bloodLossRate = 0;
     public float painAmountIncreaseRate => 0;
 
     public Image bloodBar;
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
 
     public float reach = 2f;
     public LayerMask touchable;
+    private bool healing => activeHand?.mode == "heal";
     private void Awake() 
     {         
         if (instance != null && instance != this) 
@@ -73,16 +76,20 @@ public class Player : MonoBehaviour
         surviveTime = Time.time;
         surviveTimeText.text = "survived: " + surviveTime.ToString("#.##");
 
-        HandleMouseEvents();
-        if (activeWeapon)
+        MouseMoveItem();
+        
+        // Don't know how to use the inspector settings so have to do it here :(
+        if (Mouse.current.rightButton.wasReleasedThisFrame || Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            activeWeapon.Move();
+            DropActiveItem();
+            StopHealing();
         }
     }
 
     public void Hurt()
     {
         debugText.text = "Joint left: " + SegmentCount;
+        bloodLossRate = maxSegmentCount - SegmentCount; // 32 is the total number of segments
     }
 
     public void ShowRandomGapToStab()
@@ -104,47 +111,94 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(stabPromptingInterval);
         }
     }
+    
+    
 
-    public void HandleMouseEvents()
+    public void HandClick(InputAction.CallbackContext context, Hand hand)
     {
-        bool leftClicked = Mouse.current.leftButton.wasPressedThisFrame;
-        bool rightClicked = Mouse.current.rightButton.wasPressedThisFrame;
-        if (leftClicked || rightClicked)
+        if (context.canceled)
         {
-            
-            if (leftClicked && activeWeapon)
+            return;
+        }
+        if (activeWeapon != null)
+        {
+            return;
+        }
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); 
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+        Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, reach, touchable))
+        {
+            Weapon weapon = hit.collider.GetComponentInParent<Weapon>();
+            if (weapon != null)
             {
-                activeWeapon.Action();
-                return;
+                activeHand = hand;
+                activeWeapon = weapon;
+                weapon.Grab();
+                activeHand.Grab();
             }
 
-            if (activeWeapon)
+            PropaneTank pt = hit.collider.GetComponentInParent<PropaneTank>();
+            if (pt != null)
             {
-                return;
+                hand.Heal();
             }
-            
-            
-            
-            
-            Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
+        }
+    }
 
-            // actual Ray
-            
-            // debug Ray
-            Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
-            Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Player.instance.reach, touchable))
-            {
-                Weapon weapon = hit.collider.GetComponent<Weapon>();
-                if (weapon)
-                {
-                    activeHand = leftClicked ? leftHand : rightHand;
-                    activeWeapon = weapon;
-                    weapon.Grab();
-                    activeHand.Grab();
-                }
-            }
+    public void RightHandClick(InputAction.CallbackContext context)
+    {
+        HandClick(context, rightHand);
+    }
+    
+    public void LeftHandClick(InputAction.CallbackContext context)
+    {
+        HandClick(context, leftHand);
+    }
+
+    public void MouseMoveItem()
+    {
+        if (activeWeapon != null)
+        {
+            activeWeapon.Move();
+        }
+    }
+
+    public void StopHealing()
+    {
+        if (healing)
+        {
+            activeHand.Reset();
+        }
+    }
+
+    public void DropActiveItem()
+    {
+        if (activeWeapon != null)
+        {
+            activeWeapon.Drop();
+        }
+    }
+    
+    public void ActionWithActiveWeapon(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            return;
+        }
+        if (activeWeapon != null)
+        {
+            activeWeapon.Action();
+        }
+    }
+
+    public void ReloadRevolver()
+    {
+        if (activeWeapon is Revolver)
+        {
+            Revolver revolver = (Revolver)activeWeapon;
+            revolver.Reload();
         }
     }
 }

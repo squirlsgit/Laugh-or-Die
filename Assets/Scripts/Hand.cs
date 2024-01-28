@@ -23,6 +23,14 @@ public class Hand : MonoBehaviour
         {
             OnMove();
         }
+
+        if (mode == "heal")
+        {
+            if (Player.instance.bloodLossRate > 0 && rootSegment.GetAllSegments().Count < 16)
+            {
+                Player.instance.bloodLossRate -= Time.deltaTime;
+            }
+        }
     }
     
     public virtual void OnMove()
@@ -44,10 +52,20 @@ public class Hand : MonoBehaviour
         Reset();
     }
 
+    public void Heal()
+    {
+        mode = "heal";
+        Player.instance.activeHand = this;
+        PropaneTank pt = PropaneTank.instance;
+        transform.localPosition = pt.transform.position + pt.handPlacementOffset;
+    }
+
     public void Reset()
     {
         mode = "idle";
+        rootSegment.UnhighlightAll();
         transform.position = initialPosition;
         transform.rotation = initialRotation;
+        Player.instance.activeHand = null;
     }
 }

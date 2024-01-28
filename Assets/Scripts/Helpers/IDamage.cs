@@ -6,3 +6,14 @@ public interface IDamageDetailed
     public void Damage(MonoBehaviour cause, RaycastHit hit);
     public void Damage(MonoBehaviour cause, Vector3 position, Vector3 surfaceNormal, [CanBeNull] Collider collider);
 }
+
+public interface IDamage
+{
+    public float hp
+    {
+        get;
+        set;
+    }
+    public void Damage();
+    public void Die();
+}

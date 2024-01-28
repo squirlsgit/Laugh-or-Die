@@ -78,7 +78,7 @@ public class Segment : MonoBehaviour
     {
         foreach(Segment segment in GetAllSegments())
         {
-            segment.Highlight();
+            segment.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 
@@ -86,20 +86,10 @@ public class Segment : MonoBehaviour
     {
         foreach(Segment segment in GetAllSegments())
         {
-            segment.Unhighlight();
+            segment.GetComponent<Renderer>().material.color = new Color(255, 216, 186);
         }
     }
-
-    public void Highlight()
-    {
-        GetComponent<Renderer>().material.color = Color.red;
-    }
-
-    public void Unhighlight()
-    {
-        GetComponent<Renderer>().material.color = Color.white;
-    }
-
+    
     IEnumerator SegmentDying()
     {
         yield return new WaitForSeconds(3);

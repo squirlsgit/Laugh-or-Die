@@ -350,6 +350,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5074d680-8cc5-426d-887f-004d7aa47f7f
     m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ca9bd9e6-dcf8-43b3-883b-27c23cf398bd
+    m_ActionName: Player/Alt Fire[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c5b2241-55ab-4d54-8f26-34063626af8b
+    m_ActionName: Player/RightHold
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01d805a6-c90d-4de7-bd33-9db63e0c27f5
+    m_ActionName: Player/LeftHold
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f90c695b-3311-4aa3-9694-921a5cc03b92
+    m_ActionName: Player/WeaponAction[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28d34a12-6d01-4b72-896c-646588103483
+    m_ActionName: Player/LeftClick[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6105e921-9713-4607-a13e-9a9eae3bde98
+    m_ActionName: Player/RightClick[/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

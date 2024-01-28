@@ -180,17 +180,19 @@ public class Mee : MonoBehaviour, IDamageDetailed
 
     public void IncreaseLaughMeter(float amount)
     {
-        
         laughMeter.fillAmount += amount;
         if (State == MeeState.Sad && laughMeter.fillAmount > happyThreshold)
         {
             State = MeeState.Happy;
-        }
-
-        if (State != MeeState.Excited && laughMeter.fillAmount > excitedThreshold)
+        } else if (State != MeeState.Excited && laughMeter.fillAmount > excitedThreshold)
         {
             State = MeeState.Excited;
         }
+
+        // if (laughMeter.fillAmount > 1f && Player.instance.bloodAmount >= 100f)
+        // {
+        //     SceneM.instance.WinGame();
+        // }
         if (laughMeter.fillAmount >= laughThreshold)
         {
             _animator.SetTrigger("laugh");

@@ -11,6 +11,14 @@ namespace SFX
         /// arg0 == "stabWall" || arg0 == "shootWall"
         /// chopFlesh
         /// massiveChopFlesh
+        ///
+        ///
+        /// bleedOutLaugh
+        /// bored
+        /// bravoEncore
+        /// deathScream
+        /// handOverFire
+        /// intro
         /// </summary>
         public static SourcePlayerEvents instance;
         public UnityEvent<string, Vector3?, Vector3?, GameObject> OnEvent = new(); 

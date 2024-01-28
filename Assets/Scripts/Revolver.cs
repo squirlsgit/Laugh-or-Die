@@ -9,8 +9,8 @@ public class Revolver : Weapon
     public override void Action()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, bulletShootingPoint.TransformDirection(Vector3.up) * 100, Color.yellow);
-        if (Physics.Raycast(transform.position, bulletShootingPoint.TransformDirection(Vector3.up), out hit, Mathf.Infinity, shootableLayer))
+        Debug.DrawRay(transform.position, bulletShootingPoint.TransformDirection(Vector3.back) * 100, Color.yellow);
+        if (Physics.Raycast(transform.position, bulletShootingPoint.TransformDirection(Vector3.back), out hit, Mathf.Infinity, shootableLayer))
         {
             IDamageDetailed damagable = hit.transform.GetComponentInParent<IDamageDetailed>();
             if (damagable != null)

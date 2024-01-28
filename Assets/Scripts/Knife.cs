@@ -52,10 +52,7 @@ public class Knife : Weapon
         _stabbing = true;
         stabFrom = transform.position;
         stabTo = transform.position - holdOffsetPosition / 2;
-        Debug.Log(stabFrom + " " + stabTo);
-        
         gameObject.SetChildLayers(LayerMask.NameToLayer("Knife"));
-        //rb.isKinematic = false;
         rb.velocity = new Vector3(0,-20,0);
         if (_targetedSegment)
         {
@@ -72,7 +69,7 @@ public class Knife : Weapon
     public void GapDetection()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity, gapLayer))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, Mathf.Infinity, gapLayer))
         {
             Gap gap = hit.transform.gameObject.GetComponentInParent<Gap>();
             if (gap)
@@ -89,8 +86,8 @@ public class Knife : Weapon
     public void SegmentDetection()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 100, Color.yellow);
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity,
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * 100, Color.yellow);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, Mathf.Infinity,
                 segmentLayer))
         {
             _targetedSegment = hit.transform.gameObject.GetComponent<Segment>();

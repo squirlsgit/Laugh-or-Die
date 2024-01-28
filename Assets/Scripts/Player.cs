@@ -11,9 +11,6 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
-    // TODO: Bryan code clean up items (Nick please add more that Bryan needs to clean up):
-    // TODO: move all ui references to another script
-
     public int maxSegmentCount = 32;
 
     public IWeapon activeWeapon;
@@ -29,25 +26,23 @@ public class Player : MonoBehaviour
     
     public float maxBloodAmount = 500;
     public float bloodAmount;
-    public float painAmount;
-    // TODO: don't hardcode initial limb count
     public float bloodLossRate = 0;
-    public float painAmountIncreaseRate => 0;
 
     public Image bloodBar;
-    public Image painBar;
-
     public float stabPromptingInterval;
 
     public TMP_Text surviveTimeText;
     public TMP_Text scoreText;
 
     public float surviveTime;
-    public float score;
+    public int score;
 
     public float reach = 2f;
     public LayerMask touchable = LayerMask.GetMask("Knife");
     private bool healing => activeHand?.mode == "heal";
+
+    private Stack<Gap> currentGapPattern;
+    
     private void Awake() 
     {         
         if (instance != null && instance != this) 
@@ -64,6 +59,7 @@ public class Player : MonoBehaviour
     {
         bloodAmount = maxBloodAmount;
         debugText.text = "Joint left: " + SegmentCount;
+        currentGapPattern = StabbingGame.instance.Level1PatternFactory();
 
         StartCoroutine(ConstantlyShowRandomGapToStab());
     }
@@ -91,29 +87,26 @@ public class Player : MonoBehaviour
         debugText.text = "Joint left: " + SegmentCount;
         bloodLossRate = maxSegmentCount - SegmentCount; // 32 is the total number of segments
     }
-
-    public void ShowRandomGapToStab()
-    {
-        int randomIndex = Random.Range(0, (gaps.Count - 1));
-        foreach (Gap gap in gaps)
-        {
-            gap.Deactivate();
-        }
-        gaps[randomIndex].Activate();
-
-    }
-
+    
     IEnumerator ConstantlyShowRandomGapToStab()
     {
         while (true)
         {
-            ShowRandomGapToStab();
+            if (currentGapPattern.Count == 0)
+            {
+                currentGapPattern = StabbingGame.instance.GapPatternFactory();
+                Debug.Log(currentGapPattern.Count + " count");
+            }
+            Gap highlightGap = currentGapPattern.Pop();
+            foreach (Gap gap in gaps)
+            {
+                gap.Deactivate();
+            }
+            highlightGap.Activate();
             yield return new WaitForSeconds(stabPromptingInterval);
         }
     }
     
-    
-
     public void HandClick(InputAction.CallbackContext context, Hand hand)
     {
         if (context.canceled)
@@ -190,6 +183,22 @@ public class Player : MonoBehaviour
         if (activeWeapon != null)
         {
             activeWeapon.Action();
+        }
+    }
+
+    public int ScoreToLevel(int score)
+    {
+        if (score > 40)
+        {
+            return 3;
+        }
+        else if (score > 15)
+        {
+            return 2;
+        }
+        else
+        {
+            return 1;
         }
     }
 

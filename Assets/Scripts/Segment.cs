@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using SFX;
 using Sirenix.OdinInspector;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Segment : MonoBehaviour

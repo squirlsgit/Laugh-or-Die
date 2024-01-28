@@ -3617,7 +3617,7 @@ MonoBehaviour:
   laughThreshold: 0.7
   happyThreshold: 0.4
   excitedThreshold: 0.8
-  giftTimeThreshold: 1
+  giftTimeThreshold: 90
   revolver: {fileID: 1133914670}
   _animator: {fileID: 919132147552010588}
   timeThreshold: 20

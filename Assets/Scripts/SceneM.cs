@@ -21,28 +21,35 @@ public class SceneM : MonoBehaviour
 
     public void GameOver()
     {
-        
-        mainMenuScreen.SetActive(false);
-        gameWinScreen.SetActive(false);
-        gameContainer.SetActive(false);
-        gameOverScreen.SetActive(true);
+        SceneManager.LoadScene("Game Over");
+        // mainMenuScreen.SetActive(false);
+        // gameWinScreen.SetActive(false);
+        // gameContainer.SetActive(false);
+        // gameOverScreen.SetActive(true);
     }
 
     public void WinGame()
     {
-        mainMenuScreen.SetActive(false);
-        gameContainer.SetActive(false);
-        gameOverScreen.SetActive(false);
-        gameWinScreen.SetActive(true);
+        SceneManager.LoadScene("Game Win");
+        // mainMenuScreen.SetActive(false);
+        // gameContainer.SetActive(false);
+        // gameOverScreen.SetActive(false);
+        // gameWinScreen.SetActive(true);
     }
 
     public float introVoiceLineDelay = 3f;
     public void StartGame()
     {
-        mainMenuScreen.SetActive(false);
-        gameWinScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
-        gameContainer.SetActive(true);
+        SceneManager.LoadScene("Game Start");
+        // mainMenuScreen.SetActive(false);
+        // gameWinScreen.SetActive(false);
+        // gameOverScreen.SetActive(false);
+        // gameContainer.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Dismemberment 3");
     }
 
     public void RestartGame()

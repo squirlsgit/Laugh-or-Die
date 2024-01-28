@@ -172,6 +172,7 @@ public class Mee : MonoBehaviour, IDamageDetailed
         {
             GiftGun();
         }
+        ;
     }
 
     void DeltaDecreaseLaughMeter()

@@ -8,9 +8,10 @@ public class Revolver : Weapon
     public Transform bulletShootingPoint;
     public override void Action()
     {
+        Debug.Log("gun act");
         RaycastHit hit;
-        Debug.DrawRay(transform.position, bulletShootingPoint.TransformDirection(Vector3.up) * 100, Color.yellow);
-        if (Physics.Raycast(transform.position, bulletShootingPoint.TransformDirection(Vector3.up), out hit, Mathf.Infinity, shootableLayer, QueryTriggerInteraction.Collide))
+        Debug.DrawRay(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.forward) * 100, Color.yellow);
+        if (Physics.Raycast(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootableLayer, QueryTriggerInteraction.Collide))
         {
             IDamageDetailed damagable = hit.transform.GetComponentInParent<IDamageDetailed>();
             if (damagable != null)
@@ -23,5 +24,12 @@ public class Revolver : Weapon
     public void Reload()
     {
         Debug.Log("Reload gun");
+    }
+
+    public override void Move()
+    {
+        base.Move();
+        // Camera c = Camera.main;
+        // transform.rotation = c.transform.rotation;
     }
 }

@@ -55,7 +55,7 @@ public class Knife : Weapon
     {
         _stabbing = true;
         stabFrom = transform.position;
-        stabTo = transform.position + new Vector3(0, -1.4f, 0);
+        stabTo = transform.position + new Vector3(0, -0.7f, 0);
         
         Debug.Log(stabFrom + "  " + stabTo);
         

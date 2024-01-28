@@ -34,6 +34,7 @@ public class Mee : MonoBehaviour, IDamageDetailed
     public float excitedThreshold = 0.85f;
     public float giftTimeThreshold = 60f;
     private List<Transform> positionsAfterGun = new();
+    public Revolver revolver;
     public enum MeeState
     {
         Happy,
@@ -114,7 +115,10 @@ public class Mee : MonoBehaviour, IDamageDetailed
         { 
             instance = this; 
         }
+    }
 
+    private void Start()
+    {
         SourcePlayerEvents.instance.OnEvent.AddListener(OnStrikeProp);
     }
 
@@ -142,6 +146,7 @@ public class Mee : MonoBehaviour, IDamageDetailed
     public void GiftGun()
     {
         State = MeeState.Gift;
+        StartCoroutine(revolver.WaitUntilGunShowsUp());
     }
 
     /// <summary>
@@ -172,9 +177,14 @@ public class Mee : MonoBehaviour, IDamageDetailed
         {
             GiftGun();
         }
-        ;
     }
 
+    void WaitForSecondsTilGiftGun()
+    {
+        
+    }
+
+    
     void DeltaDecreaseLaughMeter()
     {
         laughMeter.fillAmount -= Time.deltaTime * rateOfLaughterDecrease;
@@ -249,14 +259,9 @@ public class Mee : MonoBehaviour, IDamageDetailed
     {
         _animator.SetTrigger("die");
         SourcePlayerEvents.instance.InvokeEvent("deathScream");
-        StartCoroutine(WaitSecondsUntilLoadWin());
+        StartCoroutine(SceneM.instance.WaitSecondsUntilLoadWin());
     }
-
-    IEnumerator WaitSecondsUntilLoadWin()
-    {
-        yield return new WaitForSeconds(4);
-        SceneM.instance.WinGame();
-    }
+    
     
     public void Dead()
     {
@@ -268,6 +273,6 @@ public class Mee : MonoBehaviour, IDamageDetailed
     {
         _animator.SetTrigger("kill");
         SourcePlayerEvents.instance.InvokeEvent("killPlayer", Player.instance.transform.position,Vector3.up,null);
-        SceneM.instance.GameOver();
+        StartCoroutine(SceneM.instance.WaitSecondsUntilLoadLose());
     }
 }

@@ -218,7 +218,7 @@ public class Player : MonoBehaviour
 
     public int ScoreToLevel(int score)
     {
-        if (score > 40)
+        if (score > 30)
         {
             return 3;
         }

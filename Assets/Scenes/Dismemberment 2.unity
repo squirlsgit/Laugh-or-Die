@@ -2537,6 +2537,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revolver
       objectReference: {fileID: 0}
+    - target: {fileID: 3076291385037743388, guid: 82f326a6440b34bd3a8594cec2e4769e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3308173538642481804, guid: 82f326a6440b34bd3a8594cec2e4769e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2705,6 +2710,18 @@ MonoBehaviour:
       m_Calls: []
   emission: {r: 33.896763, g: 0, b: 0, a: 1}
   color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1133914670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8198392906754780616, guid: 82f326a6440b34bd3a8594cec2e4769e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1133914665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133914667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93cb84d37c01464ab154bc4ed89ace0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1229356589
 GameObject:
   m_ObjectHideFlags: 0
@@ -3252,23 +3269,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7483386711481717240, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
+      propertyPath: m_Height
+      value: 2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483386711481717240, guid: dd2773f07b5a347e3aaa35e757df5842,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483386711481717240, guid: dd2773f07b5a347e3aaa35e757df5842,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7483386711481717240, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
       propertyPath: m_Center.x
-      value: 0.01
+      value: -3.16
       objectReference: {fileID: 0}
     - target: {fileID: 7483386711481717240, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.81
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7483386711481717240, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.12
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 7484551746665035375, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
@@ -3288,6 +3315,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1549587027}
+    - targetCorrespondingSourceObject: {fileID: 7591223513547265526, guid: dd2773f07b5a347e3aaa35e757df5842,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1549587030}
     - targetCorrespondingSourceObject: {fileID: 3271097805510746761, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
       insertIndex: -1
@@ -3325,6 +3356,29 @@ MonoBehaviour:
       m_Calls: []
   emission: {r: 33.896763, g: 0, b: 0, a: 1}
   color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!136 &1549587030
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549587026}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.49
+  m_Height: 6.63
+  m_Direction: 1
+  m_Center: {x: 0.05, y: 1.81, z: 0.12}
 --- !u!1 &1571799959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,7 +3514,8 @@ MonoBehaviour:
   laughThreshold: 0.7
   happyThreshold: 0.4
   excitedThreshold: 0.8
-  giftTimeThreshold: 60
+  giftTimeThreshold: 1
+  revolver: {fileID: 1133914670}
   _animator: {fileID: 919132147552010588}
   timeThreshold: 20
   startTime: 0

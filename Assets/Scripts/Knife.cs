@@ -66,10 +66,14 @@ public class Knife : Weapon
             basicallyJustTheWoodChipping?.Stop();
             basicallyJustTheWoodChipping?.Play();
         }
-    
         if (_targetGap != null)
         {
             _targetGap.Hit();
+        }
+
+        if (_targetGap == null && _targetedSegment == null)
+        {
+            Mee.instance.laughMeter.fillAmount -= 0.05f;
         }
     }
     

@@ -22,7 +22,6 @@ public class StabbingGame : MonoBehaviour
 
     public Stack<Gap> GapPatternFactory()
     {
-        Debug.Log("level" + level);
         if (level == 1)
         {
             return Level1PatternFactory();

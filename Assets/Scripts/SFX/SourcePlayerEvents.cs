@@ -6,6 +6,12 @@ namespace SFX
 {
     public class SourcePlayerEvents : MonoBehaviour
     {
+        /// <summary>
+        ///
+        /// arg0 == "stabWall" || arg0 == "shootWall"
+        /// chopFlesh
+        /// massiveChopFlesh
+        /// </summary>
         public static SourcePlayerEvents instance;
         public UnityEvent<string, Vector3?, Vector3?, GameObject> OnEvent = new(); 
         private void Awake()

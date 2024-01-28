@@ -249,7 +249,15 @@ public class Mee : MonoBehaviour, IDamageDetailed
     {
         _animator.SetTrigger("die");
         SourcePlayerEvents.instance.InvokeEvent("deathScream");
+        StartCoroutine(WaitSecondsUntilLoadWin());
     }
+
+    IEnumerator WaitSecondsUntilLoadWin()
+    {
+        yield return new WaitForSeconds(4);
+        SceneM.instance.WinGame();
+    }
+    
     public void Dead()
     {
         SceneM.instance.WinGame();

@@ -75,7 +75,8 @@ public class Player : MonoBehaviour
         StartCoroutine(ConstantlyShowRandomGapToStab());
     }
 
-    
+    public float injuredBloodThreshold = 100f;
+    public bool IsInjured => bloodBar.fillAmount < injuredBloodThreshold;
     private void Update()
     {
         bloodAmount -= bloodLossRate * Time.deltaTime;

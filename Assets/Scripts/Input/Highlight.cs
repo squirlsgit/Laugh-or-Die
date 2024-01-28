@@ -31,6 +31,10 @@ namespace Input
         [Button]
         public void highlight()
         {
+            if (Player.instance.activeWeapon != null)
+            {
+                return;
+            }
             foreach(var renderer in renderers)
             {
                 if (!renderer)

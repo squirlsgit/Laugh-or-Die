@@ -26,7 +26,7 @@ public class Gap : MonoBehaviour
     void OscillateArrow()
     {
         Vector3 pos = indicatorArrow.position;
-        indicatorArrow.position = new Vector3(pos.x, pos.y + Mathf.Cos(Time.time * 5) / 400f, pos.z);
+        indicatorArrow.position = new Vector3(pos.x, pos.y + Mathf.Cos(Time.time * 5) / 900f, pos.z);
     }
 
     public void Deactivate()

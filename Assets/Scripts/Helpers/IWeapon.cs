@@ -6,10 +6,6 @@ public interface IWeapon
     {
         get;
     }
-    public Rigidbody rb
-    {
-        get;
-    }
 
     public Vector3 holdOffsetPosition
     {

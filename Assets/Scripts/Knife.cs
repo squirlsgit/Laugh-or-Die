@@ -28,7 +28,7 @@ public class Knife : Weapon
     {
         if (_stabbing)
         {
-            transform.position = Vector3.MoveTowards(transform.position, stabTo, Time.deltaTime * 30);
+            transform.position = Vector3.MoveTowards(transform.position, stabTo, Time.deltaTime * 5);
             if (Vector3.Distance(transform.position, stabTo) < 0.001f)
             {
                 _stabbing = false;
@@ -57,9 +57,11 @@ public class Knife : Weapon
     {
         _stabbing = true;
         stabFrom = transform.position;
-        stabTo = transform.position - holdOffsetPosition / 2;
+        stabTo = transform.position + new Vector3(0, -1.4f, 0);
+        
+        Debug.Log(stabFrom + "  " + stabTo);
+        
         gameObject.SetChildLayers(LayerMask.NameToLayer("Knife"));
-        rb.velocity = new Vector3(0,-20,0);
         if (_targetedSegment)
         {
             _targetedSegment.Fling();

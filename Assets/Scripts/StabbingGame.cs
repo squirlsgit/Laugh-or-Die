@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StabbingGame : MonoBehaviour
 {
-    public int level;
+    public int level = 1;
     public static StabbingGame instance;
 
     private void Awake() 
@@ -22,6 +22,7 @@ public class StabbingGame : MonoBehaviour
 
     public Stack<Gap> GapPatternFactory()
     {
+        Debug.Log("level" + level);
         if (level == 1)
         {
             return Level1PatternFactory();

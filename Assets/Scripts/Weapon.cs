@@ -8,11 +8,8 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 {
     // do we actually need draggable class?
     private bool _isDragging;
-
-    public Rigidbody rb
-    {
-        get => GetComponent<Rigidbody>();
-    }
+    public Vector3 dropLocalPosition;
+    public Quaternion dropLocalRotation;
     
     [SerializeField]
     private Vector3 _holdOffsetPosition;
@@ -56,15 +53,15 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
     public virtual void Drop()
     {
-        rb.isKinematic = false;
         Player.instance.activeHand.Free();
         Player.instance.activeWeapon = null;
+        transform.localPosition = dropLocalPosition;
+        transform.localRotation = dropLocalRotation;
     }
 
     public virtual void Grab()
     {
         _isDragging = true;
-        rb.isKinematic = true;
         gameObject.SetChildLayers(LayerMask.NameToLayer("Ignore Raycast"));
         Straighten();
     }

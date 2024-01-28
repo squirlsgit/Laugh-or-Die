@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
             if (currentGapPattern.Count == 0)
             {
                 currentGapPattern = StabbingGame.instance.GapPatternFactory();
-                Debug.Log(currentGapPattern.Count + " count");
             }
             Gap highlightGap = currentGapPattern.Pop();
             foreach (Gap gap in gaps)

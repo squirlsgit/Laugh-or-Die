@@ -8,11 +8,11 @@ public class Revolver : Weapon
     public Transform bulletShootingPoint;
     public override void Action()
     {
-        Debug.Log("gun act");
         RaycastHit hit;
         Debug.DrawRay(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.back) * 100, Color.yellow);
         if (Physics.Raycast(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.back), out hit, Mathf.Infinity, shootableLayer, QueryTriggerInteraction.Collide))
         {
+            Debug.Log(hit.transform.gameObject);
             IDamageDetailed damagable = hit.transform.GetComponentInParent<IDamageDetailed>();
             if (damagable != null)
             {

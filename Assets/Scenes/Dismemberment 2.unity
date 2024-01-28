@@ -3222,6 +3222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2413036496152817883, guid: dd2773f07b5a347e3aaa35e757df5842,
         type: 3}
+      propertyPath: tankObject
+      value: 
+      objectReference: {fileID: 2099501716}
+    - target: {fileID: 2413036496152817883, guid: dd2773f07b5a347e3aaa35e757df5842,
+        type: 3}
       propertyPath: handPlacementOffset.y
       value: 2.5
       objectReference: {fileID: 0}
@@ -3411,7 +3416,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1610704018}
   - component: {fileID: 1610704019}
-  m_Layer: 0
+  - component: {fileID: 1610704020}
+  m_Layer: 10
   m_Name: Mee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3463,6 +3469,29 @@ MonoBehaviour:
   happinessFromMassiveChopFlesh: 0.3
   deminishingReturnsFromRepetition: 1
   actionTypes: []
+--- !u!136 &1610704020
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610704017}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22
+  m_Height: 0.49
+  m_Direction: 1
+  m_Center: {x: 0.09, y: 1.72, z: -1.03}
 --- !u!114 &1621078354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 912262576020957647, guid: 1e89a7a721b9f404a9585c0480498b1c,
@@ -4327,6 +4356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61612d8b1958944dc99f944fce132713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2099501716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4108737434438077924, guid: dd2773f07b5a347e3aaa35e757df5842,
+    type: 3}
+  m_PrefabInstance: {fileID: 1549587024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2121194922
 GameObject:
   m_ObjectHideFlags: 0

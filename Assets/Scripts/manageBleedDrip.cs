@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 /// <summary>
+/// @TODO add to scene
 /// Use to play drip effect when player running out of health.
 /// </summary>
     public class manageBleedDrip : MonoBehaviour

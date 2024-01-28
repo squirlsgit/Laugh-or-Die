@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using SFX;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ public class Mee : MonoBehaviour, IDamageDetailed
     public Image laughMeter;
     public float rateOfLaughterDecrease;
     public float accelerationOfLaughterDecrease;
-    public float laughThreshold = 0.7f;
+    public float laughThreshold = 0.2f;
     public float happyThreshold = 0.4f;
     public float excitedThreshold = 0.85f;
     public float giftTimeThreshold = 60f;
@@ -178,8 +179,35 @@ public class Mee : MonoBehaviour, IDamageDetailed
         laughMeter.fillAmount -= Time.deltaTime * rateOfLaughterDecrease;
     }
 
-    public void IncreaseLaughMeter(float amount)
+    public float happinessFromChopFlesh = 0.2f;
+    public float happinessFromMassiveChopFlesh = 0.3f;
+
+    public float deminishingReturnsFromRepetition = 1f;
+    [ReadOnly]
+    public List<string> actionTypes = new();
+    public void IncreaseLaughMeter(string ev, float amount)
     {
+        if (ev == "knifeDance")
+        {
+            amount *= (float)Math.Sqrt(StabbingGame.instance.level);
+        }
+        else
+        {
+            if (actionTypes.Count > 0 && actionTypes[actionTypes.Count - 1] == "knifeDance")
+            {
+                amount *= (float)Math.Sqrt(StabbingGame.instance.level);
+            }
+            else
+            {
+                amount /= deminishingReturnsFromRepetition * actionTypes.FindAll(t => t == ev).Count;
+            }
+        }
+        
+        if (amount >= laughThreshold)
+        {
+            _animator.SetTrigger("laugh");
+        }
+        actionTypes.Add(ev);
         laughMeter.fillAmount += amount;
         if (State == MeeState.Sad && laughMeter.fillAmount > happyThreshold)
         {
@@ -189,19 +217,10 @@ public class Mee : MonoBehaviour, IDamageDetailed
             State = MeeState.Excited;
         }
 
-        // if (laughMeter.fillAmount > 1f && Player.instance.bloodAmount >= 100f)
-        // {
-        //     SceneM.instance.WinGame();
-        // }
-        if (laughMeter.fillAmount >= laughThreshold)
+        if (laughMeter.fillAmount > 1f && Player.instance.bloodAmount >= 100f)
         {
-            _animator.SetTrigger("laugh");
+            SceneM.instance.WinGame();
         }
-    }
-
-    public void FullLaughMeter()
-    {
-        laughMeter.fillAmount = 1;
     }
 
     public void Damage(MonoBehaviour cause)

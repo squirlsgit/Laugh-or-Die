@@ -16,9 +16,9 @@ namespace SFX
         /// massiveChopFlesh
         /// bleedOut
         /// handOverFire **
-        /// bloodDripping
+        /// bloodDripping ** handled in script
         /// bunsenBurner -- in scene tied to fire on or off.
-        /// knifeHitTable
+        /// stabHitTable
         /// knifePickUp
         ///
         ///

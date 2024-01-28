@@ -8,11 +8,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private Volume m_Volume;
+    VolumeProfile profile => m_Volume.sharedProfile;
+
+    private Vignette _vignette;
+
+    private PaniniProjection _panini;
+    // public Vignette Vignette => _vignette ??= (profile.TryGet<Vignette>(out var _vignette) ? _vignette : null);
     public int maxSegmentCount = 32;
 
     public IWeapon activeWeapon;
@@ -44,7 +54,6 @@ public class Player : MonoBehaviour
     private bool healing => activeHand?.mode == "heal";
 
     private Stack<Gap> currentGapPattern;
-    
     private void Awake() 
     {         
         if (instance != null && instance != this) 
@@ -66,7 +75,8 @@ public class Player : MonoBehaviour
         StartCoroutine(ConstantlyShowRandomGapToStab());
     }
 
-    
+    public float injuredBloodThreshold = 100f;
+    public bool IsInjured => bloodBar.fillAmount < injuredBloodThreshold;
     private void Update()
     {
         bloodAmount -= bloodLossRate * Time.deltaTime;

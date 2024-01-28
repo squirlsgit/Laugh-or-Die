@@ -32,8 +32,6 @@ public class Knife : Weapon
             if (Vector3.Distance(transform.position, stabTo) < 0.001f)
             {
                 _stabbing = false;
-                basicallyJustTheWoodChipping?.Stop();
-                basicallyJustTheWoodChipping?.Play();
             }
         }
     }
@@ -65,6 +63,8 @@ public class Knife : Weapon
         if (_targetedSegment)
         {
             _targetedSegment.Fling();
+            basicallyJustTheWoodChipping?.Stop();
+            basicallyJustTheWoodChipping?.Play();
         }
     
         if (_targetGap != null)

@@ -118,20 +118,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator ApplyInjuredVignette()
-    {
-        var t = 0f;
-        PaniniProjection p = null;
-        if (m_Volume && )
-        {
-            while (t < vignetteAnimDur)
-            {
-                t += Time.deltaTime;
-                v.intensity.value = maxVignetteIntensity * t / vignetteAnimDur;
-                yield return new WaitForEndOfFrame();
-            }
-        }
-    }
 
     // [SerializeField]
     // private float paniniAnimDur = 0.5f;

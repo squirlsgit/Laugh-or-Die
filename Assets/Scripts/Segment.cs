@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using SFX;
+using Sirenix.OdinInspector;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -32,6 +34,10 @@ public class Segment : MonoBehaviour
         return segments;
     }
 
+    public Vector3 flingAdjust = new Vector3(0, 2, 2);
+    public float flingScale = 1f;
+    
+    [Button]
     public void Fling()
     {
         // Fling for 3 seconds then destroy
@@ -46,11 +52,28 @@ public class Segment : MonoBehaviour
         }
 
         rb.isKinematic = false;
-        rb.velocity = new Vector3(0,2,2);
+
+
+        var col = transform.parent.GetComponent<MeshCollider>();
+        var bloodPos = col.ClosestPoint(transform.position);
+        var forward = transform.position - bloodPos;
+        
+        rb.velocity = (forward + flingAdjust).normalized * flingScale;
+        var ev = "chopFlesh";
+        if (!parent.parent)
+        {
+            ev = "massiveChopFlesh";
+            bloodPos += new Vector3(0, -0.01241f, -0.0077f - 0.01f);
+        }
         Player.instance.Hurt();
         Mee.instance.FullLaughMeter();
-
-        StartCoroutine(SegmentDying());
+        SourcePlayerEvents.instance.InvokeEvent(
+            ev,
+            bloodPos,
+            rb.velocity.normalized,
+            transform.parent.gameObject
+        );
+        // StartCoroutine(SegmentDying());
     }
 
     public void HighlightAll()

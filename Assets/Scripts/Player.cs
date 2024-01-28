@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SFX;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour
     public int score;
 
     public float reach = 2f;
-    public LayerMask touchable = LayerMask.GetMask("Knife");
+    public LayerMask touchable;
     private bool healing => activeHand?.mode == "heal";
 
     private Stack<Gap> currentGapPattern;
@@ -64,9 +66,14 @@ public class Player : MonoBehaviour
         StartCoroutine(ConstantlyShowRandomGapToStab());
     }
 
+    
     private void Update()
     {
         bloodAmount -= bloodLossRate * Time.deltaTime;
+        if (bloodAmount <= 0)
+        {
+            BleedOut();
+        }
         bloodBar.fillAmount = bloodAmount / maxBloodAmount;
         
         surviveTime = Time.time;
@@ -82,6 +89,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public UnityEvent<string> OnDeath = new();
+    public void BleedOut()
+    {
+        OnDeath.Invoke("bleedOut");
+        SourcePlayerEvents.instance.InvokeEvent("bleedOut");
+        SceneM.instance.GameOver();
+
+    }
     public void Hurt()
     {
         debugText.text = "Joint left: " + SegmentCount;
@@ -210,4 +225,5 @@ public class Player : MonoBehaviour
             revolver.Reload();
         }
     }
+
 }

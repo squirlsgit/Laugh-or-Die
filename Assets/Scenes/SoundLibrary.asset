@@ -12,3 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25eed20b49cc4859b6d9f8af102a0a3f, type: 3}
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  clips:
+    m_Keys:
+    - bravoEncore
+    - bleedOutLaugh
+    - handOverFire
+    - intro
+    - bored
+    - deathScream
+    m_Values:
+    - {fileID: 8300000, guid: d6f865afa606dcb4d9ec31425123af7d, type: 3}
+    - {fileID: 8300000, guid: e2f389775d6d09c4aaa1c0dd27f286a9, type: 3}
+    - {fileID: 8300000, guid: c0c848767f17b8a4e9cabf740f9f3fee, type: 3}
+    - {fileID: 8300000, guid: 5e5960ae9ac16ba45b9bd4e43623cc9c, type: 3}
+    - {fileID: 8300000, guid: 88576cb1f6a04cf4598c90e8544e9a90, type: 3}
+    - {fileID: 8300000, guid: b03b4ce1c01a93b4687ac1eab27fefcc, type: 3}

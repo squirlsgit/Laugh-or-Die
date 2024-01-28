@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SFX;
 using UnityEngine;
 
 public class Hand : MonoBehaviour
@@ -24,8 +25,13 @@ public class Hand : MonoBehaviour
             OnMove();
         }
 
+        /// @TODO should be intuitive for player. blood loss should imply stump is bleeding somewhere. 
         if (mode == "heal")
         {
+            if (!PropaneTank.instance.IsActive)
+            {
+                return;
+            }
             if (Player.instance.bloodLossRate > 0 && rootSegment.GetAllSegments().Count < 16)
             {
                 Player.instance.bloodLossRate -= Time.deltaTime;
@@ -43,6 +49,7 @@ public class Hand : MonoBehaviour
         mode = "grabbing";
         gameObject.SetActive(false);
         transform.position = Player.instance.activeWeapon.transform.position;
+        SourcePlayerEvents.instance.InvokeEvent("knifePickUp", transform.position, Vector3.up);
     }
 
     public void Free()
@@ -58,6 +65,13 @@ public class Hand : MonoBehaviour
         Player.instance.activeHand = this;
         PropaneTank pt = PropaneTank.instance;
         transform.localPosition = pt.transform.position + pt.handPlacementOffset;
+        SourcePlayerEvents.instance.InvokeEvent("handOverFire", transform.position, Vector3.up, transform.gameObject);
+        var bleeding = GetComponentsInChildren<handblood>();
+        foreach (var thing in bleeding)
+        {
+            Destroy(thing.gameObject);
+        }
+        
     }
 
     public void Reset()

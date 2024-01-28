@@ -15,11 +15,15 @@ public class Knife : Weapon
     private bool _stabbing;
     private Vector3 stabFrom;
     private Vector3 stabTo;
+
+    /// <summary>
+    /// @TODO add clip to this source.
+    /// </summary>
+    [SerializeField] private AudioSource basicallyJustTheWoodChipping;
     
-    private void Start()
-    {
-    }
-    
+    /// <summary>
+    /// @TODO add support for collisions so we can differentiate between hand collisions on table etc.
+    /// </summary>
     void UpdateStabbingAnimation()
     {
         if (_stabbing)
@@ -28,6 +32,8 @@ public class Knife : Weapon
             if (Vector3.Distance(transform.position, stabTo) < 0.001f)
             {
                 _stabbing = false;
+                basicallyJustTheWoodChipping?.Stop();
+                basicallyJustTheWoodChipping?.Play();
             }
         }
     }

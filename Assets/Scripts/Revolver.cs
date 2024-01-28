@@ -19,4 +19,9 @@ public class Revolver : Weapon
             }
         }
     }
+
+    public void Reload()
+    {
+        Debug.Log("Reload gun");
+    }
 }

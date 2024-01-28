@@ -6,16 +6,22 @@ using JetBrains.Annotations;
 
 public class PropaneTank : MonoBehaviour, IDamageDetailed
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static PropaneTank instance;
+    public GameObject fireObject;
+    public GameObject tankObject;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Vector3 handPlacementOffset = new Vector3(-1,5,-6);
+    
+    private void Awake() 
+    {         
+        if (instance != null && instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        {
+            instance = this; 
+        } 
     }
 
     public void Damage(MonoBehaviour cause, RaycastHit hit)
@@ -28,5 +34,6 @@ public class PropaneTank : MonoBehaviour, IDamageDetailed
     {
         Debug.Log("Propane got damaged but more complicated");
     }
+    
     
 }

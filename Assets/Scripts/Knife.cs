@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +11,51 @@ public class Knife : Weapon
     private Segment _targetedSegment;
     private Segment _previousRaycastedSegment;
     private Gap _targetGap;
+
+    private bool _stabbing;
+    private Vector3 stabFrom;
+    private Vector3 stabTo;
     
+    private void Start()
+    {
+    }
+    
+    void UpdateStabbingAnimation()
+    {
+        if (_stabbing)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, stabTo, Time.deltaTime * 30);
+            if (Vector3.Distance(transform.position, stabTo) < 0.001f)
+            {
+                _stabbing = false;
+            }
+        }
+    }
+
     void Update()
     {
         SegmentDetection();
         GapDetection();
+        UpdateStabbingAnimation();
     }
-    
-    public override void Action() 
+
+    public override void Move()
     {
+        if (!_stabbing)
+        {
+            base.Move();
+        }
+    }
+
+    public override void Action()
+    {
+        _stabbing = true;
+        stabFrom = transform.position;
+        stabTo = transform.position - holdOffsetPosition / 2;
+        Debug.Log(stabFrom + " " + stabTo);
+        
         gameObject.SetChildLayers(LayerMask.NameToLayer("Knife"));
-        rb.isKinematic = false;
+        //rb.isKinematic = false;
         rb.velocity = new Vector3(0,-20,0);
         if (_targetedSegment)
         {
@@ -31,11 +66,9 @@ public class Knife : Weapon
         {
             _targetGap.Hit();
         }
-    
-        Player.instance.activeWeapon = null;
-        Player.instance.activeHand.Free();
     }
     
+
     public void GapDetection()
     {
         RaycastHit hit;
@@ -56,11 +89,10 @@ public class Knife : Weapon
     public void SegmentDetection()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 20, Color.yellow);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 100, Color.yellow);
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity,
                 segmentLayer))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
             _targetedSegment = hit.transform.gameObject.GetComponent<Segment>();
             if (!_targetedSegment)
             {

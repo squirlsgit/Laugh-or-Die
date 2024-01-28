@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     // TODO: Bryan code clean up items (Nick please add more that Bryan needs to clean up):
     // TODO: move all ui references to another script
 
+    public int maxSegmentCount = 32;
+
     public IWeapon activeWeapon;
     public Hand activeHand;
         
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
     public float bloodAmount;
     public float painAmount;
     // TODO: don't hardcode initial limb count
-    public float bloodLossRate => 32 - SegmentCount;
+    public float bloodLossRate = 0;
     public float painAmountIncreaseRate => 0;
 
     public Image bloodBar;
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
 
     public float reach = 2f;
     public LayerMask touchable = LayerMask.GetMask("Knife");
+    private bool healing => activeHand?.mode == "heal";
     private void Awake() 
     {         
         if (instance != null && instance != this) 
@@ -79,12 +82,14 @@ public class Player : MonoBehaviour
         if (Mouse.current.rightButton.wasReleasedThisFrame || Mouse.current.leftButton.wasReleasedThisFrame)
         {
             DropActiveItem();
+            StopHealing();
         }
     }
 
     public void Hurt()
     {
         debugText.text = "Joint left: " + SegmentCount;
+        bloodLossRate = maxSegmentCount - SegmentCount; // 32 is the total number of segments
     }
 
     public void ShowRandomGapToStab()
@@ -106,8 +111,10 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(stabPromptingInterval);
         }
     }
+    
+    
 
-    public void LeftHandPickupItem(InputAction.CallbackContext context)
+    public void HandClick(InputAction.CallbackContext context, Hand hand)
     {
         if (context.canceled)
         {
@@ -123,42 +130,31 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, reach, touchable))
         {
-            Weapon weapon = hit.collider.GetComponent<Weapon>();
+            Weapon weapon = hit.collider.GetComponentInParent<Weapon>();
             if (weapon != null)
             {
-                activeHand = leftHand;
+                activeHand = hand;
                 activeWeapon = weapon;
                 weapon.Grab();
                 activeHand.Grab();
+            }
+
+            PropaneTank pt = hit.collider.GetComponentInParent<PropaneTank>();
+            if (pt != null)
+            {
+                hand.Heal();
             }
         }
     }
-    
-    public void RightHandPickupItem(InputAction.CallbackContext context)
+
+    public void RightHandClick(InputAction.CallbackContext context)
     {
-        if (context.canceled)
-        {
-            return;
-        }
-        if (activeWeapon != null)
-        {
-            return;
-        }
-        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); 
-        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
-        Debug.DrawRay(ray.origin, ray.direction * reach, Color.red);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, reach, touchable))
-        {
-            Weapon weapon = hit.collider.GetComponent<Weapon>();
-            if (weapon != null)
-            {
-                activeHand = rightHand;
-                activeWeapon = weapon;
-                weapon.Grab();
-                activeHand.Grab();
-            }
-        }
+        HandClick(context, rightHand);
+    }
+    
+    public void LeftHandClick(InputAction.CallbackContext context)
+    {
+        HandClick(context, leftHand);
     }
 
     public void MouseMoveItem()
@@ -169,6 +165,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void StopHealing()
+    {
+        if (healing)
+        {
+            activeHand.Reset();
+        }
+    }
+
     public void DropActiveItem()
     {
         if (activeWeapon != null)
@@ -176,7 +180,7 @@ public class Player : MonoBehaviour
             activeWeapon.Drop();
         }
     }
-
+    
     public void ActionWithActiveWeapon(InputAction.CallbackContext context)
     {
         if (context.canceled)
@@ -186,6 +190,15 @@ public class Player : MonoBehaviour
         if (activeWeapon != null)
         {
             activeWeapon.Action();
+        }
+    }
+
+    public void ReloadRevolver()
+    {
+        if (activeWeapon is Revolver)
+        {
+            Revolver revolver = (Revolver)activeWeapon;
+            revolver.Reload();
         }
     }
 }

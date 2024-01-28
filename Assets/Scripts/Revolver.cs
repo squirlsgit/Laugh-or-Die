@@ -10,8 +10,8 @@ public class Revolver : Weapon
     {
         Debug.Log("gun act");
         RaycastHit hit;
-        Debug.DrawRay(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.forward) * 100, Color.yellow);
-        if (Physics.Raycast(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootableLayer, QueryTriggerInteraction.Collide))
+        Debug.DrawRay(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.back) * 100, Color.yellow);
+        if (Physics.Raycast(bulletShootingPoint.transform.position, bulletShootingPoint.TransformDirection(Vector3.back), out hit, Mathf.Infinity, shootableLayer, QueryTriggerInteraction.Collide))
         {
             IDamageDetailed damagable = hit.transform.GetComponentInParent<IDamageDetailed>();
             if (damagable != null)

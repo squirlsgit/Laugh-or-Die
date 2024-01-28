@@ -104,11 +104,11 @@ public class Player : MonoBehaviour
 
     public UnityEvent<string> OnDeath = new();
     public void BleedOut()
-    {
+    {   
+        Debug.Log("Gameover");
         OnDeath.Invoke("bleedOut");
         SourcePlayerEvents.instance.InvokeEvent("bleedOut");
         SceneM.instance.GameOver();
-
     }
     public void Hurt()
     {

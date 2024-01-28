@@ -49,7 +49,7 @@ public class SceneM : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Dismemberment 3");
+        SceneManager.LoadScene("Dismemberment 2");
     }
 
     public void RestartGame()

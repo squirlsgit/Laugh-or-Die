@@ -53,17 +53,17 @@ public class Mee : MonoBehaviour, IDamageDetailed
             _animator.SetBool("standing", value);
         }
     }
-    public bool Interested
-    {
-        get
-        {
-            return _animator.GetBool("standing");
-        }
-        set
-        {
-            _animator.SetBool("standing", value);
-        }
-    }
+    // public bool Interested
+    // {
+    //     get
+    //     {
+    //         return _animator.GetBool("standing");
+    //     }
+    //     set
+    //     {
+    //         _animator.SetBool("standing", value);
+    //     }
+    // }
 
     public MeeState State
     {

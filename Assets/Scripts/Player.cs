@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private Volume m_Volume;
-    VolumeProfile profile => m_Volume.sharedProfile;
+    private VolumeProfile profile => m_Volume.sharedProfile;
 
     private Vignette _vignette;
 
@@ -84,6 +84,11 @@ public class Player : MonoBehaviour
         {
             BleedOut();
         }
+
+        // if (IsInjured)
+        // {
+        //     StartCoroutine(ApplyInjuredVignette());
+        // }
         bloodBar.fillAmount = bloodAmount / maxBloodAmount;
         
         surviveTime = Time.time;
@@ -98,6 +103,46 @@ public class Player : MonoBehaviour
             StopHealing();
         }
     }
+
+    [SerializeField]
+    float vignetteAnimDur = 0.5f;
+    [SerializeField]
+    private float maxVignetteIntensity = 0.2f;
+    IEnumerator ApplyInjuredVignette()
+    {
+        var t = 0f;
+        Vignette v = null;
+        PaniniProjection p = null;
+        if (m_Volume && m_Volume.sharedProfile.TryGet<Vignette>(out v))
+        {
+            while (t < vignetteAnimDur)
+            {
+                t += Time.deltaTime;
+                v.intensity.value = maxVignetteIntensity * t / vignetteAnimDur;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+    }
+
+    // [SerializeField]
+    // private float paniniAnimDur = 0.5f;
+    // IEnumerator ApplyInjuredPanini()
+    // {var t = 0f;
+    //     Vignette v = null;
+    //     PaniniProjection p = null;
+    //
+    //     if (m_Volume.sharedProfile.TryGet<Vignette>(out v))
+    //     {
+    //         while (true)
+    //         {
+    //             t += Time.deltaTime;
+    //             v.intensity.value = t / vignetteAnimDur;
+    //             yield return new WaitForEndOfFrame();
+    //         }
+    //     }
+    //     
+    // }
+    
 
     public UnityEvent<string> OnDeath = new();
     public void BleedOut()

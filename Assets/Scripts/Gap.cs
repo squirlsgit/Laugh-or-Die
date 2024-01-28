@@ -14,7 +14,7 @@ public class Gap : MonoBehaviour
 
     public void Hit()
     {
-        Mee.instance.IncreaseLaughMeter("knifeDance", 0.05f);
+        Mee.instance.IncreaseLaughMeter("knifeDance", 0.025f);
         Deactivate();
         Player.instance.score += 1;
         StabbingGame.instance.level = Player.instance.ScoreToLevel(Player.instance.score);

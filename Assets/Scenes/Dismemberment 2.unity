@@ -3612,7 +3612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHead: {fileID: 6170895285076924654}
   laughMeter: {fileID: 1229356591}
-  rateOfLaughterDecrease: 0.01
+  rateOfLaughterDecrease: 0.02
   accelerationOfLaughterDecrease: 0
   laughThreshold: 0.7
   happyThreshold: 0.4

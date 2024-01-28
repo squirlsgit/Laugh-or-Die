@@ -34,7 +34,7 @@ public class Hand : MonoBehaviour
             }
             if (Player.instance.bloodLossRate > 0 && rootSegment.GetAllSegments().Count < 16)
             {
-                Player.instance.bloodLossRate -= Time.deltaTime;
+                Player.instance.bloodLossRate -= Time.deltaTime * 2;
             }
         }
     }

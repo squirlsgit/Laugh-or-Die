@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SFX;
 using UnityEngine;
 
 public class Gap : MonoBehaviour
@@ -13,12 +14,13 @@ public class Gap : MonoBehaviour
 
     public void Hit()
     {
-        Mee.instance.IncreaseLaughMeter(0.05f);
+        Mee.instance.IncreaseLaughMeter("knifeDance", 0.05f);
         Deactivate();
         Player.instance.score += 1;
         StabbingGame.instance.level = Player.instance.ScoreToLevel(Player.instance.score);
         Debug.Log(StabbingGame.instance.level);
         Player.instance.scoreText.text = "score: " + Player.instance.score;
+        SourcePlayerEvents.instance.InvokeEvent("stabHitTable");
     }
 
     void OscillateArrow()

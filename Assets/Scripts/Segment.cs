@@ -64,9 +64,14 @@ public class Segment : MonoBehaviour
         {
             ev = "massiveChopFlesh";
             bloodPos += new Vector3(0, -0.01241f, -0.0077f - 0.01f);
+            Mee.instance.IncreaseLaughMeter("massiveChopFlesh", Mee.instance.happinessFromMassiveChopFlesh);
+        }
+        else
+        {
+            Mee.instance.IncreaseLaughMeter("chopFlesh", Mee.instance.happinessFromChopFlesh);
         }
         Player.instance.Hurt();
-        Mee.instance.FullLaughMeter();
+        // Mee.instance.FullLaughMeter();
         SourcePlayerEvents.instance.InvokeEvent(
             ev,
             bloodPos,

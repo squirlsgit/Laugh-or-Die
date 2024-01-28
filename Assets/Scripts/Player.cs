@@ -158,12 +158,15 @@ public class Player : MonoBehaviour
                 weapon.Grab();
                 activeHand.Grab();
             }
-
-            PropaneTank pt = hit.collider.GetComponentInParent<PropaneTank>();
+            
+            PropaneTank pt = hit.collider.GetComponent<PropaneTank>();
             if (pt != null)
             {
                 hand.Heal();
             }
+            
+            Debug.Log(hit.transform.gameObject);
+
         }
     }
 

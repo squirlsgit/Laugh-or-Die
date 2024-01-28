@@ -29,7 +29,7 @@ public class Revolver : Weapon
 
     public IEnumerator WaitUntilGunShowsUp()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         transform.gameObject.SetActive(true);
     }
 

@@ -30,6 +30,8 @@ public class PropaneTank : MonoBehaviour, IDamageDetailed
     {
         SourcePlayerEvents.instance.InvokeEvent("shootPropane", hit.point, hit.normal, transform.gameObject);
         fireObject.SetActive(false);
+        tankObject.SetActive(false);
+        Mee.instance.laughMeter.fillAmount = 1;
     }
     public void Damage(MonoBehaviour cause, Vector3 position, Vector3 surfaceNormal, [CanBeNull] Collider collider)
     {

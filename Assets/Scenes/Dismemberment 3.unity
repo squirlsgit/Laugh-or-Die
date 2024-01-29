@@ -715,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 2120942196765969142, guid: e05b29f4a1a0c4b658809d7fb33820f4,
         type: 3}
       propertyPath: _holdOffsetPosition.y
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2120942196765969142, guid: e05b29f4a1a0c4b658809d7fb33820f4,
         type: 3}
@@ -757,7 +757,8 @@ PrefabInstance:
       propertyPath: emission.r
       value: 33.896763
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 218797239456579506, guid: e05b29f4a1a0c4b658809d7fb33820f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 487640875760600071, guid: e05b29f4a1a0c4b658809d7fb33820f4,
@@ -4166,6 +4167,10 @@ MonoBehaviour:
   timeThreshold: 20
   startTime: 0
   displeasureFromBadBehavior: 0.5
+  happinessFromChopFlesh: 0.2
+  happinessFromMassiveChopFlesh: 0.3
+  deminishingReturnsFromRepetition: 1
+  actionTypes: []
 --- !u!1 &1677720403
 GameObject:
   m_ObjectHideFlags: 0

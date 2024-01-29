@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StabbingGame : MonoBehaviour
 {
-    public int level;
+    public int level = 1;
     public static StabbingGame instance;
 
     private void Awake() 

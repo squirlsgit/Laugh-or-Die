@@ -14,7 +14,7 @@ public class Gap : MonoBehaviour
 
     public void Hit()
     {
-        Mee.instance.IncreaseLaughMeter("knifeDance", 0.05f);
+        Mee.instance.IncreaseLaughMeter("knifeDance", 0.025f);
         Deactivate();
         Player.instance.score += 1;
         StabbingGame.instance.level = Player.instance.ScoreToLevel(Player.instance.score);
@@ -26,7 +26,7 @@ public class Gap : MonoBehaviour
     void OscillateArrow()
     {
         Vector3 pos = indicatorArrow.position;
-        indicatorArrow.position = new Vector3(pos.x, pos.y + Mathf.Cos(Time.time * 5) / 100f, pos.z);
+        indicatorArrow.position = new Vector3(pos.x, pos.y + Mathf.Cos(Time.time * 5) / 900f, pos.z);
     }
 
     public void Deactivate()

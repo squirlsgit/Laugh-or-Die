@@ -15,6 +15,7 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
+    public Animator anim;
     [SerializeField]
     private Volume m_Volume;
     private VolumeProfile profile => m_Volume.sharedProfile;
@@ -66,8 +67,10 @@ public class Player : MonoBehaviour
         } 
     }
     
+    
     private void Start()
     {
+        anim.Play("Grab Knife");
         bloodAmount = maxBloodAmount;
         debugText.text = "Joint left: " + SegmentCount;
         currentGapPattern = StabbingGame.instance.Level1PatternFactory();
@@ -141,11 +144,11 @@ public class Player : MonoBehaviour
 
     public UnityEvent<string> OnDeath = new();
     public void BleedOut()
-    {
+    {   
+        Debug.Log("Gameover");
         OnDeath.Invoke("bleedOut");
         SourcePlayerEvents.instance.InvokeEvent("bleedOut");
         SceneM.instance.GameOver();
-
     }
     public void Hurt()
     {
@@ -160,7 +163,6 @@ public class Player : MonoBehaviour
             if (currentGapPattern.Count == 0)
             {
                 currentGapPattern = StabbingGame.instance.GapPatternFactory();
-                Debug.Log(currentGapPattern.Count + " count");
             }
             Gap highlightGap = currentGapPattern.Pop();
             foreach (Gap gap in gaps)
@@ -196,12 +198,15 @@ public class Player : MonoBehaviour
                 weapon.Grab();
                 activeHand.Grab();
             }
-
-            PropaneTank pt = hit.collider.GetComponentInParent<PropaneTank>();
+            
+            PropaneTank pt = hit.collider.GetComponent<PropaneTank>();
             if (pt != null)
             {
                 hand.Heal();
             }
+            
+            Debug.Log(hit.transform.gameObject);
+
         }
     }
 
@@ -253,7 +258,7 @@ public class Player : MonoBehaviour
 
     public int ScoreToLevel(int score)
     {
-        if (score > 40)
+        if (score > 30)
         {
             return 3;
         }
@@ -275,5 +280,7 @@ public class Player : MonoBehaviour
             revolver.Reload();
         }
     }
+    
+    
 
 }

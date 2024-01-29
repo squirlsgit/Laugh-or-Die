@@ -71,7 +71,11 @@ namespace Input
 
                     if (emissiveCache.ContainsKey(mat))
                     {
-                        mat.SetColor(emissiveColorProperty, emissiveCache[mat]);
+                        if (mat.HasColor(emissiveColorProperty))
+                        {
+                            
+                            mat.SetColor(emissiveColorProperty, emissiveCache[mat]);
+                        }
                     }
                 }   
             }
@@ -91,7 +95,10 @@ namespace Input
                 foreach (var mat in renderer.materials)
                 {
                     colorCache[mat] = mat.color;
-                    emissiveCache[mat] = mat.GetColor(emissiveColorProperty);
+                    if (mat.HasColor(emissiveColorProperty)) {
+                        
+                        emissiveCache[mat] = mat.GetColor(emissiveColorProperty);
+                    }
                 }
             }
         }

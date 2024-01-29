@@ -2,11 +2,11 @@ using UnityEngine;
 
 public interface IWeapon
 {
+    // public Rigidbody rb
+    // {
+    //     get;
+    // }
     public Transform transform
-    {
-        get;
-    }
-    public Rigidbody rb
     {
         get;
     }

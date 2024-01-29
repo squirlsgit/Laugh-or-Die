@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eed20b49cc4859b6d9f8af102a0a3f, type: 3}
+  m_Name: VoiceLines
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  clips:
+    m_Keys:
+    - bored
+    - intro
+    - deathScream
+    - bleedOut
+    - moreMoreMORE
+    - bravoEncore
+    - killPlayer
+    m_Values:
+    - {fileID: 8300000, guid: 88576cb1f6a04cf4598c90e8544e9a90, type: 3}
+    - {fileID: 8300000, guid: 5e5960ae9ac16ba45b9bd4e43623cc9c, type: 3}
+    - {fileID: 8300000, guid: b03b4ce1c01a93b4687ac1eab27fefcc, type: 3}
+    - {fileID: 8300000, guid: d51c458222d9f8640af1141df57cda5a, type: 3}
+    - {fileID: 8300000, guid: 3552432edba14f848ac3c1e232971833, type: 3}
+    - {fileID: 8300000, guid: d6f865afa606dcb4d9ec31425123af7d, type: 3}
+    - {fileID: 8300000, guid: 697e318ad34d18c44b3f7ce7bcbdbea3, type: 3}

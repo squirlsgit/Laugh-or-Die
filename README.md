@@ -9,16 +9,15 @@ Don't sit still too long, Mee won't be too happy and may end your journey shortl
 
 Huge thank you to:
 
-- Ivan, Leon, and Joseph for modeling;
-- Ivan, Nick, and Bryan for animating;
-- Nick for VFX
+- Ivan, Leon, and Joseph for modeling
+- Ivan, Bryan, and Nick for animating
 - Ivan and Nick for scene design and lighting
 - Fey, Joseph, Ivan, and Leon for texturing
-- _anon and Nick for sound design
+- _anon and Nick for sound design and visual effects
 - Stephen for voice acting
 - Leon, Stephen, Ivan, and Nick for writing.
 - Bryan and Nick for gameplay.
-- Ivan, Nick, and Bryan for game design.
+- Ivan, Bryan, and Nick for game design.
 
 Special shout out goes out to Stephen and Fey who joined us last minute. Stephen for their awe-inspiring performance as Mee, and Fey for pumping out stunning texture after texture.
 

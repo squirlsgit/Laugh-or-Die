@@ -45,8 +45,13 @@ namespace Input
                 {
                     colorCache[mat] = mat.color;
                     mat.color = color;
-                    emissiveCache[mat] = mat.GetColor(emissiveColorProperty);
-                    mat.SetColor(emissiveColorProperty, emission);
+
+                    if (mat.HasColor(emissiveColorProperty))
+                    {
+                        emissiveCache[mat] = mat.GetColor(emissiveColorProperty);
+                        mat.SetColor(emissiveColorProperty, emission);
+                    }
+
                 }
             }
             OnHighlight.Invoke();
